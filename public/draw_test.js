@@ -5,6 +5,7 @@ var app = new Vue({
         toolIsDown: false,
         wait: false,
         waitTime: 10,
+        dataURL: null,
         penColor: '#000000',
         penOpacity: 1,
         penWidth: 10,
@@ -100,6 +101,11 @@ var app = new Vue({
 
             this.activeTool.handleDown()
         },
+
+
+        canvasToData() {  
+            this.dataURL = 'data:image/svg+xml;charset=utf-8,' + canvas.el.outerHTML
+        }
     }
     
 })

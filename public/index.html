@@ -13,11 +13,13 @@
             <div id="canvasWrapper">
                 <svg id="sketchCanvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
                     <g id="strokes"></g>
-                    <polyline id="newPath" :points="newPath" :style="{stroke: penColor, strokeWidth: penWidth, strokeOpacity: penOpacity,}" />
+                    <polyline id="newPath" :points="newPath" :style="{stroke: penColor, strokeWidth: penWidth, strokeOpacity: penOpacity,}" stroke-linecap="round" stroke-linejoin="round" fill="transparent" />
                 </svg>
             </div>
         </div>
     
+        <button @click="canvasToData">Save Image</button>
+
         <p>
             <h4>Tools</h4>
             <button v-for="tool in toolkit" @click="selectTool(tool)">{{tool.name}}</button>
@@ -36,10 +38,13 @@
             <input type="color" v-model="penColor">
         </p>
 
+        <img :src="dataURL" style="width: 100%">
 
     </div>
-        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="draw_test.js"></script>
+    <script src="socket.js"></script>
 </body>
 </html>
