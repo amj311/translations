@@ -2,4 +2,16 @@
 
 <p>You are on socket {{socketService.socket.id}}</p>
 
+<h2>Start a new game!</h2>
 <button (click)="handleStartNew()" mat-raised-button color="primary">Start!</button>
+
+<hr>
+
+<h2>Join a game!</h2>
+<div (keydown.enter)="handleSubmitRoomID()">
+    <mat-form-field appearance="outline">
+        <mat-label>Room Code</mat-label> 
+        <input matInput ([ngModel])="reqRoomID">
+    </mat-form-field>
+    <button (submit)="handleSubmitRoomID()" mat-raised-button color="primary">Join!</button>
+</div>

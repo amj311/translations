@@ -11,14 +11,16 @@ import { Router } from '@angular/router';
 export class StartComponent implements OnInit {
 
   socket;
+  reqRoomID: String = "";
 
   constructor(
     private http: HttpClient,
     private socketService: SocketService,  
     private router: Router,
-  ) { }
+  ) {}
 
   ngOnInit() {
+
     this.socketService.socket$.subscribe(
       res => {
         this.socket = res;
@@ -31,6 +33,7 @@ export class StartComponent implements OnInit {
     })
 
     this.socket.on('openHostRoom', id => {
+      this.router.navigate(['host'])
       console.log('i am now hosting room: '+id)
     })
 
@@ -44,7 +47,7 @@ export class StartComponent implements OnInit {
   }
 
   handleSubmitRoomID(){
-    console.log('asking to join')
+    console.log('asking to join '+this.reqRoomID)
     this.socket.emit('requestToJoinRoom')
   }
 

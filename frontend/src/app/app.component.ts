@@ -7,8 +7,23 @@ import { SocketService } from './services/socket.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  musicIsOn = true;
+
   constructor(private socketService: SocketService) {
 
   }
-  title = 'frontend';
+
+  
+  toggleMusic(){
+    let player = document.getElementById('menu-music')
+    if (player.paused) {
+      player.play();
+      this.musicIsOn = true;
+    }
+    else {
+      player.pause();
+      this.musicIsOn = false;
+    }
+  }
 }

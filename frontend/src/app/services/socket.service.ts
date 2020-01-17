@@ -57,7 +57,7 @@ export class SocketService {
       this.setUID(uid)
     })
     
-    
+
     
     this.socket.on('msg', (msg)=> console.log(msg) )
     this.socket.on('err', (err)=> console.error(err) )

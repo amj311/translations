@@ -2,7 +2,7 @@ import { NgModule }         from '@angular/core';
 import { BrowserModule }    from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatSliderModule, MatButtonModule} from '@angular/material';
+import {MatSliderModule, MatButtonModule, MatInputModule, MatIconModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,8 @@ import { HostComponent } from './components/host/host.component';
     BrowserAnimationsModule,
     MatSliderModule,
     MatButtonModule,
+    MatInputModule,
+    MatIconModule,
   ],
   providers: [SocketService],
   bootstrap: [AppComponent]

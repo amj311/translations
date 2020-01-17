@@ -1,3 +1,15 @@
 
+
+<audio id="menu-music" autoplay loop>
+    <source src="../../../assets/sound/treasure-hunter.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>
+
+<button (click)="toggleMusic()" mat-button>
+    <mat-icon *ngIf="!musicIsOn">volume_off</mat-icon>
+    <mat-icon *ngIf="musicIsOn">volume_up</mat-icon>
+</button>
+
+
 <router-outlet></router-outlet>
 
