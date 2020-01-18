@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class StartComponent implements OnInit {
 
   socket;
-  reqRoomID: String = "";
+  reqRoomID = "";
 
   constructor(
     private http: HttpClient,
@@ -24,19 +24,20 @@ export class StartComponent implements OnInit {
     this.socketService.socket$.subscribe(
       res => {
         this.socket = res;
+
+        
+        this.socket.on('joinedRoom', id => {
+          this.router.navigate(['play'])
+        })
+
+        this.socket.on('openHostRoom', id => {
+          this.router.navigate(['host'])
+        })
+
       }
     )
 
-    this.socket.on('joinedRoom', player => {
-      this.router.navigate(['play'])
-
-    })
-
-    this.socket.on('openHostRoom', id => {
-      this.router.navigate(['host'])
-      console.log('i am now hosting room: '+id)
-    })
-
+    this.socketService.reset();
 
 
   }
@@ -48,7 +49,7 @@ export class StartComponent implements OnInit {
 
   handleSubmitRoomID(){
     console.log('asking to join '+this.reqRoomID)
-    this.socket.emit('requestToJoinRoom')
+    this.socket.emit('requestToJoinRoom', this.reqRoomID)
   }
 
 }

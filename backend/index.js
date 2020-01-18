@@ -80,14 +80,38 @@ io.on('connection', function(socket){
 		} while ( rooms.filter( r => r.id === newRoomId ).length > 0 )
 
 		let newRoom = new GameRoom(newRoomId);
-		newRoom.configureHost(sockUser)
 		rooms.push(newRoom)
 
 		socket.emit('openHostRoom', newRoomId)
+		newRoom.configureHost(sockUser)
 
 		console.log('rooms: '+rooms.map(r => r.id))
 
 	})
+
+	socket.on('hostClosedRoomComplete', id => {
+		console.log('\nclosing room: '+id)
+		rooms = rooms.filter(r => r.id != id)
+		console.log('rooms: '+ rooms.map(r => r.id) +'\n')
+	})
+
+
+
+
+
+
+	socket.on('requestToJoinRoom', id => {
+		let roomMatch = rooms.filter(r => r.id === id)[0]
+
+		if (roomMatch) {
+			console.log('user is joining room '+roomMatch.id)
+			
+			roomMatch.addPlayer(sockUser)
+		}
+		else socket.emit('err', 'There is no such room!');
+	})
+
+
 
 	socket.on('disconnect', () => {
 		if (sockUser) userMngr.handleLostUserConnection(sockUser)

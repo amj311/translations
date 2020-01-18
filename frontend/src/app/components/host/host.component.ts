@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HostComponent implements OnInit {
   socket;
-  game;
+  roomID;
 
   constructor(
     private http: HttpClient,
@@ -24,8 +24,23 @@ export class HostComponent implements OnInit {
         this.socket = res;
       }
     )
+
+    this.socket.on('welcomeToHosting', id => {
+      this.roomID = id;
+      console.log('i am now hosting room '+id)
+    })
+
+    this.socket.on('handleClosedRoom', () => {
+      this.socket.emit('hostClosedRoomComplete', this.roomID)
+      this.roomID = null;
+      this.router.navigate([''])
+    })
+
   }
 
+  closeRoom(){
+    this.socket.emit('initiateCloseRoom')
+  }
 
   
 }

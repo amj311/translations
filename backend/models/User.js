@@ -8,6 +8,7 @@ class User {
         this.socket = props.socket || null;
         this.room = props.room || null;
         this.role = props.role || null;
+        this.gameData = props.role || null;
     }
 
     assignSocket(socket){
@@ -17,6 +18,22 @@ class User {
     makeHost(room){
         this.role = ROLES.host;
         this.room = room;
+    }
+
+
+    joinRoom(room) {
+        this.role = ROLES.player;
+        this.room = room;
+
+        this.socket.emit('joinedRoom', this.room.id)
+    }
+    
+    handleClosedRoom(){
+        this.gameData = null;
+        this.room = null;
+        this.role = null;
+
+        this.socket.emit('handleClosedRoom')
     }
 
     // MOVE THISS LOGIC TO USERLIST CLASS

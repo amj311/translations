@@ -11,6 +11,7 @@ import { StartComponent } from './components/start/start.component';
 import { PlayComponent } from './components/play/play.component';
 import { SocketService } from './services/socket.service';
 import { HostComponent } from './components/host/host.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { HostComponent } from './components/host/host.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatButtonModule,

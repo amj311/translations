@@ -24,6 +24,10 @@ export class PlayComponent implements OnInit {
         this.socket = res;
       }
     )
+
+    this.socket.on('handleClosedRoom', () => {
+      this.router.navigate([''])
+    })
   }
 
   

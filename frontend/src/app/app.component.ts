@@ -16,13 +16,14 @@ export class AppComponent {
 
   
   toggleMusic(){
-    let player = document.getElementById('menu-music')
-    if (player.paused) {
-      player.play();
+    let audioPlayer = <HTMLVideoElement> document.getElementById('menu-music');
+
+    if (audioPlayer.paused) {
+      audioPlayer.play();
       this.musicIsOn = true;
     }
     else {
-      player.pause();
+      audioPlayer.pause();
       this.musicIsOn = false;
     }
   }
