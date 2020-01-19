@@ -1,3 +1,6 @@
 <h2>Welcome to Room {{roomID}}!</h2>
 
 <button mat-button (click)="closeRoom()">Close Room</button>
+
+<h2>Players</h2>
+<div *ngFor="let player of players">{{player}}</div>

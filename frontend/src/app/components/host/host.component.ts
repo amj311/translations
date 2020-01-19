@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HostComponent implements OnInit {
   socket;
   roomID;
+  players = [];
 
   constructor(
     private http: HttpClient,
@@ -34,6 +35,10 @@ export class HostComponent implements OnInit {
       this.socket.emit('hostClosedRoomComplete', this.roomID)
       this.roomID = null;
       this.router.navigate([''])
+    })
+
+    this.socket.on('newPlayerJoined', pid=> {
+      this.players.push(pid)
     })
 
   }

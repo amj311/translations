@@ -34,6 +34,7 @@ class GameRoom {
     addPlayer(p) {
         this.players.push(p)
         p.joinRoom(this)
+        this.host.socket.emit('newPlayerJoined', p.id)
     }
 
     ejectPlayer(p){
