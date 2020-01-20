@@ -3,11 +3,12 @@ var cors = require('cors');
 var crypto = require('crypto')
 var app = express();
 
+app.use(express.static('../frontend/dist/frontend/'))
+
 app.use(cors({
 	origin: 'http://localhost:4400'
 }));
 
-app.use(express.static('public'))
 
 var port = 4300;
 var server = app.listen(port, function(){

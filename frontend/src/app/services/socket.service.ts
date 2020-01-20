@@ -77,7 +77,7 @@ export class SocketService {
 
   reset(){
     this.socket.close()
-    this.socket$.next(io('http://localhost:4300'))
+    this.socket$.next(io())
 
     
   }
