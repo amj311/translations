@@ -16,7 +16,7 @@ export class HostComponent implements OnInit {
   bgMusic;
   sounds;
   musicOn = true;
-  soundsOn0 = true;
+  soundsOn = true;
 
   constructor(
     private http: HttpClient,
@@ -77,11 +77,11 @@ export class HostComponent implements OnInit {
 
     if (this.sounds.paused) {
       this.sounds.play();
-      this.musicOn = true;
+      this.soundsOn = true;
     }
     else {
       this.sounds.pause();
-      this.musicOn = false;
+      this.soundsOn = false;
     }
   }
   

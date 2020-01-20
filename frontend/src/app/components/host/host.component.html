@@ -3,8 +3,8 @@
   Your browser does not support the audio element.
 </audio>
 <button (click)="toggleMusic()" mat-button>
-    <mat-icon *ngIf="!musicIsOn">music_off</mat-icon>
-    <mat-icon *ngIf="musicIsOn">music_note</mat-icon>
+    <mat-icon *ngIf="!musicOn">music_off</mat-icon>
+    <mat-icon *ngIf="musicOn">music_note</mat-icon>
 </button>
 
 
@@ -14,8 +14,8 @@
 </audio>
 
 <button (click)="toggleSounds()" mat-button>
-    <mat-icon *ngIf="!musicIsOn">volume_off</mat-icon>
-    <mat-icon *ngIf="musicIsOn">volume_up</mat-icon>
+    <mat-icon *ngIf="!soundsOn">volume_off</mat-icon>
+    <mat-icon *ngIf="soundsOn">volume_up</mat-icon>
 </button>
 
 

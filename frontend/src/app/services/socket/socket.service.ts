@@ -32,8 +32,6 @@ export class SocketService {
           console.log('no previous uid')
           this.socket.emit('registerNewUser')
         }
-        
-
       })
 
 
