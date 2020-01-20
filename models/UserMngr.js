@@ -37,7 +37,7 @@ class UserMngr {
 
         setTimeout( function() {
             if (!user.isConnected) {
-                console.log('\n'+this.id+` remains inactive after ${limboTime}. It will now be terminated.\n`)
+                console.log('\n'+user.id+` remains inactive after ${limboTime}. It will now be terminated.\n`)
                 userMngr.deleteUser(user)
             }
             else {
