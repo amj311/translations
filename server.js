@@ -3,7 +3,7 @@ var cors = require('cors');
 var crypto = require('crypto')
 var app = express();
 
-app.use(express.static('../frontend/dist/frontend/'))
+app.use(express.static('frontend/dist/frontend/'))
 
 app.use(cors({
 	origin: 'http://localhost:4400'
