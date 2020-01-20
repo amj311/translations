@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 
 import io from 'socket.io-client'
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,7 @@ export class SocketService {
 
   reset(){
     this.socket.close()
-    this.socket$.next(io())
+    this.socket$.next(io(environment.socketURL))
 
     
   }

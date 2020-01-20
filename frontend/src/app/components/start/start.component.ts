@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SocketService } from 'src/app/services/socket.service';
+import { GameStateService } from 'src/app/services/game-state/game-state.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,8 @@ export class StartComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private socketService: SocketService,  
+    private socketService: SocketService,
+    private game: GameStateService,
     private router: Router,
   ) {}
 

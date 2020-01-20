@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SocketService } from 'src/app/services/socket.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 import { Router } from '@angular/router';
 
 @Component({

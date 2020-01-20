@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SocketService } from 'src/app/services/socket.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 import { Router } from '@angular/router';
+import { GameStateService } from 'src/app/services/game-state/game-state.service';
 
 @Component({
   selector: 'app-host',
@@ -12,14 +13,22 @@ export class HostComponent implements OnInit {
   socket;
   roomID;
   players = [];
+  bgMusic;
+  sounds;
+  musicOn = true;
+  soundsOn0 = true;
 
   constructor(
     private http: HttpClient,
     private socketService: SocketService,
+    public game: GameStateService,
     private router: Router,
   ) { }
 
   ngOnInit() {
+    this.bgMusic  = <HTMLVideoElement> document.getElementById('bg-music');
+    this.sounds  = <HTMLVideoElement> document.getElementById('sounds');
+
     this.socketService.socket$.subscribe(
       res => {
         this.socket = res;
@@ -47,5 +56,33 @@ export class HostComponent implements OnInit {
     this.socket.emit('initiateCloseRoom')
   }
 
+
+
+
+
+  
+  toggleMusic(){
+
+    if (this.bgMusic.paused) {
+      this.bgMusic.play();
+      this.musicOn = true;
+    }
+    else {
+      this.bgMusic.pause();
+      this.musicOn = false;
+    }
+  }
+
+  toggleSounds(){
+
+    if (this.sounds.paused) {
+      this.sounds.play();
+      this.musicOn = true;
+    }
+    else {
+      this.sounds.pause();
+      this.musicOn = false;
+    }
+  }
   
 }

@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StartComponent } from './components/start/start.component';
 import { PlayComponent } from './components/play/play.component';
-import { SocketService } from './services/socket.service';
+import { SocketService } from './services/socket/socket.service';
+import { GameStateService } from './services/game-state/game-state.service';
 import { HostComponent } from './components/host/host.component';
 import { FormsModule } from '@angular/forms';
 
@@ -32,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatIconModule,
   ],
-  providers: [SocketService],
+  providers: [SocketService, GameStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

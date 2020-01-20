@@ -1,3 +1,24 @@
+<audio id="bg-music" autoplay loop>
+    <source src="../../../assets/sound/treasure-hunter.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>
+<button (click)="toggleMusic()" mat-button>
+    <mat-icon *ngIf="!musicIsOn">music_off</mat-icon>
+    <mat-icon *ngIf="musicIsOn">music_note</mat-icon>
+</button>
+
+
+<audio id="sounds">
+    <source src type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>
+
+<button (click)="toggleSounds()" mat-button>
+    <mat-icon *ngIf="!musicIsOn">volume_off</mat-icon>
+    <mat-icon *ngIf="musicIsOn">volume_up</mat-icon>
+</button>
+
+
 <h2>Welcome to Room {{roomID}}!</h2>
 
 <button mat-button (click)="closeRoom()">Close Room</button>

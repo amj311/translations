@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SocketService } from './services/socket.service';
+import { SocketService } from './services/socket/socket.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +9,12 @@ import { SocketService } from './services/socket.service';
 })
 export class AppComponent {
 
-  musicIsOn = true;
+  inDevMode;
 
-  constructor(private socketService: SocketService) {
-
+  constructor(
+    private socketService: SocketService
+  ) {
+    this.inDevMode = !environment.production;
   }
 
-  
-  toggleMusic(){
-    let audioPlayer = <HTMLVideoElement> document.getElementById('menu-music');
-
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      this.musicIsOn = true;
-    }
-    else {
-      audioPlayer.pause();
-      this.musicIsOn = false;
-    }
-  }
 }
