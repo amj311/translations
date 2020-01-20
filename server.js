@@ -5,17 +5,11 @@ var app = express();
 
 app.use(express.static('frontend/dist/frontend/'))
 
-app.use(cors({
-	origin: 'http://localhost:4400'
-}));
 
-
-var port = 8080;
+var port = 4300;
 var server = app.listen(port, function(){
   console.log(`listening on *:${port}`);
 });
-
-
 
 
 // Models and State
