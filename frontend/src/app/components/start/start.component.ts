@@ -17,7 +17,7 @@ export class StartComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private socketService: SocketService,
-    private game: GameStateService,
+    private gameService: GameStateService,
     private router: Router,
   ) {}
 

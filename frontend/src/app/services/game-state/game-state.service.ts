@@ -5,7 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class GameStateService {
 
-  roomID;
 
-  constructor() { }
+  roomId: String;
+  userId: String;
+  players: [String];
+  role: String;
+  view: String;
+  
+  constructor() {
+    
+  }
+
 }
