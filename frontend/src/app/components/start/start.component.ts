@@ -26,7 +26,6 @@ export class StartComponent implements OnInit {
     this.socketService.socket$.subscribe(
       res => {
         this.socket = res;
-
         
         this.socket.on('joinedRoom', id => {
           this.router.navigate(['play'])
@@ -40,8 +39,6 @@ export class StartComponent implements OnInit {
     )
 
     this.socketService.reset();
-
-
   }
 
   handleStartNew(){

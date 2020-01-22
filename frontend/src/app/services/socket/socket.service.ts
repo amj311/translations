@@ -24,27 +24,28 @@ export class SocketService {
         console.log('connected')
 
         // Logic for returning user
-        if (localStorage.getItem('uid')){
-          console.log('previous uid:',localStorage.getItem('uid'))
-          this.socket.emit('findReturningUser', localStorage.getItem('uid'))
+        let oldID = localStorage.getItem('uid'); 
+        if (oldID){
+          console.log('previous uid:', oldID)
+          let service  = this;
+        
+          this.socket.emit('findReturningUser', oldID, function(foundMatch) {
+            if (foundMatch) {
+              console.log('match was found for:', oldID)
+              service.isReturningUser = true;
+              service.setUID(oldID);
+            }
+            else {
+              this.socket.emit('registerNewUser')
+              this.isReturningUser = false;
+            }
+          })
         }
+
         else {
           console.log('no previous uid')
           this.socket.emit('registerNewUser')
         }
-      })
-
-
-      this.socket.on('userIsReturning', matchId => {
-        console.log('match was found for:', matchId)
-        this.isReturningUser = true;
-        this.setUID(matchId)
-      })
-
-      
-      this.socket.on('userIsNew', () => {
-        this.socket.emit('registerNewUser')
-        this.isReturningUser = false;
       })
 
       

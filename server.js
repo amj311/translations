@@ -3,7 +3,7 @@ var cors = require('cors');
 var crypto = require('crypto')
 var app = express();
 
-app.use(express.static('frontend/dist/frontend/'))
+app.use(express.static('drawtest'))
 
 
 var port = 4300;
@@ -40,7 +40,7 @@ io.on('connection', function(socket){
 
 
 
-	socket.on('findReturningUser', uid => {
+	socket.on('findReturningUser', (uid, callback) => {
 		let userMatch = userMngr.list.filter(u => u.id === uid)[0]
 
 		if (userMatch) {
@@ -49,7 +49,8 @@ io.on('connection', function(socket){
 			// updates userMatch to contain new socket
 			sockUser = userMngr.handleUserReconnect(userMatch, socket)
 
-			socket.emit('userIsReturning', sockUser.id);
+			// socket.emit('userIsReturning', sockUser.id);
+			callback(true)
 		}
 		else socket.emit('userIsNew');
 	})
