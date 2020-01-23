@@ -1,17 +1,19 @@
-<p>start works!</p>
+<div [ngClass]="{'hasUser' : true}">
+    <p>start works!</p>
 
-<p>You are on socket {{socket.id}}</p>
+    <p>You are on socket {{socket.id}}</p>
 
-<h2>Start a new game!</h2>
-<button (click)="handleStartNew()" mat-raised-button color="primary">Start!</button>
+    <h2>Start a new game!</h2>
+    <button (click)="handleStartNew()" mat-raised-button color="primary">Start!</button>
 
-<hr>
+    <hr>
 
-<h2>Join a game!</h2>
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Room Code</mat-label> 
-        <input matInput [(ngModel)]="reqRoomID" name="reqRoomID">
-    </mat-form-field>
-    <button (click)="handleSubmitRoomID()" mat-raised-button color="primary">Join!</button>
+    <h2>Join a game!</h2>
+    <div (keydown.enter)="handleSubmitRoomID()">
+        <mat-form-field appearance="outline">
+            <mat-label>Room Code</mat-label> 
+            <input matInput [(ngModel)]="reqRoomID" name="reqRoomID">
+        </mat-form-field>
+        <button (click)="handleSubmitRoomID()" mat-raised-button color="primary">Join!</button>
+    </div>
 </div>

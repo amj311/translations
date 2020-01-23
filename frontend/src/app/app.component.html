@@ -1,3 +1,4 @@
 <h3 *ngIf="inDevMode" style="text-align: center;">You are in dev mode.</h3>
+<div *ngIf="gameData.uid" style="text-align: center;">You are user: {{gameData.uid}}</div>
 
 <router-outlet></router-outlet>

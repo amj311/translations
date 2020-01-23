@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import io from 'socket.io-client'
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { GameStateService } from '../game-state/game-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class SocketService {
   socket$;
   isReturningUser = false;
 
-  constructor( ) {
+  constructor(
+    private gameService: GameStateService,
+  ) {
     
     this.socket$ = new BehaviorSubject(io(''))
 
@@ -36,8 +39,8 @@ export class SocketService {
               service.setUID(oldID);
             }
             else {
-              this.socket.emit('registerNewUser')
-              this.isReturningUser = false;
+              service.socket.emit('registerNewUser')
+              service.isReturningUser = false;
             }
           })
         }
@@ -72,6 +75,7 @@ export class SocketService {
 
   setUID(id){
     localStorage.setItem('uid',id)
+    this.gameService.updateUID(id)
     console.log('I am now user: '+id)
   }
 

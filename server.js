@@ -41,6 +41,7 @@ io.on('connection', function(socket){
 
 
 	socket.on('findReturningUser', (uid, callback) => {
+		console.log('looking for returning user')
 		let userMatch = userMngr.list.filter(u => u.id === uid)[0]
 
 		if (userMatch) {
@@ -52,7 +53,7 @@ io.on('connection', function(socket){
 			// socket.emit('userIsReturning', sockUser.id);
 			callback(true)
 		}
-		else socket.emit('userIsNew');
+		else callback(false);
 	})
 
 
@@ -63,7 +64,7 @@ io.on('connection', function(socket){
 
 	socket.on('hostNewRoom', () => {
 
-		if(sockUser.role === ROLES.user || sockUser.role === ROLES.host) {
+		if(sockUser && sockUser.role === ROLES.user || sockUser && sockUser.role === ROLES.host) {
 			socket.emit('err', "User is already hosting or playing in another room.")
 			return;
 		}

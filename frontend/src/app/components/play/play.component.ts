@@ -11,6 +11,7 @@ import { GameStateService } from 'src/app/services/game-state/game-state.service
 })
 export class PlayComponent implements OnInit {
   socket;
+  gameData;
 
   constructor(
     private http: HttpClient,
@@ -26,7 +27,11 @@ export class PlayComponent implements OnInit {
       }
     )
 
-    this.gameService.view = 'nickname';
+    this.gameService.data$.subscribe(
+      res => {
+        this.gameData = res;
+      }
+    )
 
     this.socket.on('handleClosedRoom', () => {
       this.router.navigate([''])
