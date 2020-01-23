@@ -3,7 +3,7 @@ var cors = require('cors');
 var crypto = require('crypto')
 var app = express();
 
-app.use(express.static('drawtest'))
+app.use(express.static('frontend/dist/frontend'))
 
 
 var port = 4300;
