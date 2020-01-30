@@ -48,7 +48,7 @@ export class StartComponent implements OnInit {
 
   handleSubmitRoomID(){
     console.log('asking to join '+this.reqRoomID)
-    this.socket.emit('requestToJoinRoom', this.reqRoomID)
+    this.socket.emit('requestToJoinRoom', this.reqRoomID.toLowerCase())
   }
 
 }

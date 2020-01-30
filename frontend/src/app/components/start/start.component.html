@@ -12,7 +12,7 @@
     <div (keydown.enter)="handleSubmitRoomID()">
         <mat-form-field appearance="outline">
             <mat-label>Room Code</mat-label> 
-            <input matInput [(ngModel)]="reqRoomID" name="reqRoomID">
+            <input matInput [(ngModel)]="reqRoomID" name="reqRoomID" style="text-transform: uppercase;">
         </mat-form-field>
         <button (click)="handleSubmitRoomID()" mat-raised-button color="primary">Join!</button>
     </div>
