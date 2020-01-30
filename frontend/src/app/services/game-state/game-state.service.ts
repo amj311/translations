@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-class GameData {
-  players: String;
-  role: String;
-  view: String;
+class User {
   uid: String;
+  points: String;
+  role: String;
+  nickname: String;
+
+  constructor() {}
+}
+
+class GameState {
+  players: [User];
+  view: String;
+  round: Number;
+
 
   constructor() {}
 }
@@ -15,26 +24,33 @@ class GameData {
 })
 export class GameStateService {
 
-  data$: BehaviorSubject<GameData>;
-  data = new GameData();
+  state$: BehaviorSubject<GameState>;
+  state = new GameState();
+
+  currentUser$: BehaviorSubject<User>;
+  currentUser = new User();
 
   constructor() {
-    this.data$ = new BehaviorSubject(this.data);
+    this.state$ = new BehaviorSubject(this.state);
 
-    this.data$.subscribe(
+    this.state$.subscribe(
       res => {
-        this.data = res;
+        this.state = res;
       }
     )
   }
 
   updateUID(id) {
-    this.data.uid = id;
-    this.updateObservable();
+    this.currentUser.uid = id;
+    this.updateCurrentUser();
   }
   
-  updateObservable(){
-    this.data$.next(this.data)
+  updateState(){
+    this.state$.next(this.state)
+  }
+  
+  updateCurrentUser(){
+    this.currentUser$.next(this.currentUser)
   }  
 
 }

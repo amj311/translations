@@ -27,7 +27,7 @@ export class PlayComponent implements OnInit {
       }
     )
 
-    this.gameService.data$.subscribe(
+    this.gameService.state$.subscribe(
       res => {
         this.gameData = res;
       }

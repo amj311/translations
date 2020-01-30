@@ -19,7 +19,7 @@ export class AppComponent {
   ) {
     this.inDevMode = !environment.production;
 
-    this.gameService.data$.subscribe(
+    this.gameService.state$.subscribe(
       res => {
         this.gameData = res;
       }
